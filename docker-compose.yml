@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: ./etap-frontend
+      dockerfile: Dockerfile
+    container_name: etap-app
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - nest-api
+    env_file:
+      - etap-frontend/.env
+    stdin_open: true
+    tty: true
+
+  nest-api:
+    build:
+      context: ./etap-backend
+      dockerfile: Dockerfile
+    container_name: nest-api
+    restart: always
+    ports:
+      - "4000:4000"
+    depends_on:
+      - etap-nest-postgres
+    env_file:
+      - etap-backend/.env
+
+  etap-nest-postgres:
+    image: postgres:14
+    container_name: etap-nest-postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - etap-backend/.env
+    volumes:
+      - etap-nest-postgres:/var/lib/postgresql/data
+
+volumes:
+  etap-nest-postgres:
+    name: nest-postgres-db

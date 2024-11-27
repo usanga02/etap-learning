@@ -1,0 +1,53 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String    @unique
+  password    String
+  role        Role      @default(USER)
+  progress    Progress[]
+}
+
+model Subject {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  topics      Topic[]
+}
+
+model Topic {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  videoUrl    String
+  subjectId   Int
+  progress    Progress[]
+  subject     Subject   @relation(fields: [subjectId], references: [id])
+}
+
+model Progress {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  topicId     Int
+  status      ProgressStatus @default(IN_PROGRESS)
+  user        User     @relation(fields: [userId], references: [id])
+  topic       Topic    @relation(fields: [topicId], references: [id])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum ProgressStatus {
+  IN_PROGRESS
+  COMPLETED
+}
