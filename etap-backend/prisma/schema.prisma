@@ -19,7 +19,6 @@ model User {
 model Subject {
   id          Int       @id @default(autoincrement())
   title       String
-  description String
   topics      Topic[]
 }
 
