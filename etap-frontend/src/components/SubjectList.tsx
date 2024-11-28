@@ -27,7 +27,7 @@ const SubjectList = ({ subjects, setSubjects, setSelectedTopic }: Props) => {
   };
 
   return (
-    <div className="w-1/4 pt-3">
+    <div className="w-2/5 lg:w-1/3 pt-3">
       <h2 className="text-slate-300 text-center p-2 font-bold bg-slate-600">
         Subjects
       </h2>

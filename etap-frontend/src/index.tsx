@@ -8,6 +8,7 @@ import SignUp from "./views/signup";
 import ProtectedRoute from "./components/auth/protectedRoute";
 import UnprotectedRoute from "./components/auth/unprotectedRoute";
 import AuthProvider from "./context/AuthProvider";
+import Notify from "./components/alert";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
 root.render(
   <React.StrictMode>
     <AuthProvider>
+      <Notify />
       <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>

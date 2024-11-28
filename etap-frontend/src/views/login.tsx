@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 type Props = {};
 
 const Login = (props: Props) => {
-  const { login } = useAuth() as AuthContextType;
+  const { login, message } = useAuth() as AuthContextType;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",

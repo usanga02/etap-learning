@@ -2,12 +2,11 @@
 import { useEffect, useState } from "react";
 import { Topics } from "../components/TopicList";
 import TopicDetail from "../components/TopicDetails";
-import data from "../data";
 import Layout from "../Layout";
 import axiosInstance from "../utils/axiosInstance";
 
 function Home() {
-  const [subjects, setSubjects] = useState(data);
+  const [subjects, setSubjects] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState<Topics | null>(null);
 
   const getData = async () => {
@@ -28,7 +27,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="App px-20 bg-slate-100 min-h-screen py-10">
+    <div className="App px-5 lg:px-10 xl:px-20 bg-slate-100 min-h-screen py-10">
       <h1 className="text-center mb-10 font-bold text-4xl text-slate-700">
         Etap Learning App
       </h1>
